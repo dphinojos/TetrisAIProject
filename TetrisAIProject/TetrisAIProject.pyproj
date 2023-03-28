@@ -21,6 +21,14 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="genetic_algorithm.py" />
+    <Compile Include="utils.py" />
+    <Compile Include="node.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="problem.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TetrisAIProject.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
