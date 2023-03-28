@@ -12,7 +12,7 @@ def genetic_search(problem, ngen=1000, pmut=0.1, n=20):
     s = problem.initial
     states = [problem.result(s, a) for a in problem.actions(s)]
     random.shuffle(states)
-    return genetic_algorithm(states[:n], problem.value, ngen, pmut)
+    return genetic_algorithm(states[:n], problem.value(states[:n]), ngen, pmut)
 
 
 def genetic_algorithm(population, fitness_fn, gene_pool=[0, 1], f_thres=None, ngen=1000, pmut=0.1):
@@ -22,7 +22,7 @@ def genetic_algorithm(population, fitness_fn, gene_pool=[0, 1], f_thres=None, ng
                       for i in range(len(population))]
 
         fittest_individual = fitness_threshold(fitness_fn, f_thres, population)
-        if fittest_individual:
+        if fittest_individual:  
             return fittest_individual
 
     return max(population, key=fitness_fn)
