@@ -6,9 +6,6 @@ from problem import *
 from node import *
 from genetic_algorithm import *
 
-class agent:
-    pass
-
 class Tetris(Problem):
 
     def __init__(self, initial, goal=None):
@@ -28,6 +25,7 @@ class Tetris(Problem):
 
         state, reward, _, _ = env.step(action)
         env.render()
+        print(f"Reward: {reward}")
         #env.reset()
 
         return state
@@ -46,7 +44,7 @@ env = JoypadSpace(env, SIMPLE_MOVEMENT)
 state = env.reset()
 TetrisAI = Tetris(state)
 
-TetrisGenetics = genetic_search(TetrisAI)
+#TetrisGenetics = genetic_search(TetrisAI)
 
 done = True
 total_reward = 0
