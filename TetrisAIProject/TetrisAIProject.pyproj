@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>9a152038-cc65-48f3-be93-5d4e8da563ed</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>TetrisAIProject.py</StartupFile>
+    <StartupFile>training.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>TetrisAIProject</Name>
     <RootNamespace>TetrisAIProject</RootNamespace>
+    <SuppressConfigureTestFrameworkPrompt>true</SuppressConfigureTestFrameworkPrompt>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,15 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="genetic_algorithm.py" />
-    <Compile Include="utils.py" />
-    <Compile Include="node.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="problem.py">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="TetrisAIProject.py" />
+    <Compile Include="logger.py" />
+    <Compile Include="test_trained.py" />
+    <Compile Include="QNetwork.py" />
+    <Compile Include="training.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
