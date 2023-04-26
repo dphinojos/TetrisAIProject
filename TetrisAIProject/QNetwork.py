@@ -98,7 +98,7 @@ class TetrisAI():
         self.net = TetrisNet(self.state_dim, self.action_dim).float()
         self.net = self.net.to(device=self.device)
 
-        self.memory = deque(maxlen=10000)
+        self.memory = deque(maxlen=20000)
         self.batch_size = 32
 
         self.exploration_rate = 1
@@ -109,7 +109,7 @@ class TetrisAI():
         self.save_every = 5e5
 
         self.gamma = 0.9
-        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.00025)
+        self.optimizer = torch.optim.Adam(self.net.parameters(), lr=0.00001)
         self.loss_fn = torch.nn.SmoothL1Loss()
 
         self.burnin = 1e4  # min. experiences before training
@@ -217,7 +217,7 @@ class TetrisAI():
 
     #Load for training
     def load_checkpoint(self):
-        checkpoint = torch.load('tetris_net_2.chkpt')
+        checkpoint = torch.load('tetris_net.chkpt')
         self.net.load_state_dict(checkpoint['model'])
         self.exploration_rate = checkpoint['exploration_rate']
     
@@ -225,7 +225,7 @@ class TetrisAI():
 
     #Load for testing
     def load(self):
-        checkpoint = torch.load('tetris_net_2.chkpt')
+        checkpoint = torch.load('tetris_net.chkpt')
         self.net.load_state_dict(checkpoint['model'])
         self.exploration_rate = checkpoint['exploration_rate']
     
@@ -241,6 +241,7 @@ class TetrisNet(nn.Module):
         if w != 84:
             raise ValueError(f"Expecting input width: 84, got: {w}")
 
+        #Q*
         self.online = nn.Sequential(
             nn.Conv2d(in_channels=c, out_channels=32, kernel_size=8, stride=4),
             nn.ReLU(),
@@ -254,6 +255,7 @@ class TetrisNet(nn.Module):
             nn.Linear(512, output_dim),
         )
 
+        #Q*
         self.target = copy.deepcopy(self.online)
 
         # Q_target parameters are frozen.

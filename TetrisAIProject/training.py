@@ -12,11 +12,11 @@ save_dir.mkdir(parents=True)
 tetris = TetrisAI(state_dim=(4, 84, 84), action_dim=env.action_space.n, save_dir=save_dir)
 
 #Loading In case of crash
-tetris.load_checkpoint()
+#tetris.load_checkpoint()
 
 logger = MetricLogger(save_dir)
 
-episodes = 2000 - 640
+episodes = 40000
 for e in range(episodes):
 
     state = env.reset()
@@ -29,7 +29,7 @@ for e in range(episodes):
 
         # Agent performs action
         next_state, reward, done, info = env.step(action)
-        env.render()
+        #env.render()
 
         # Remember
         tetris.cache(state, next_state, action, reward, done)
