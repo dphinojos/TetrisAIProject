@@ -14,7 +14,7 @@ Requirements include aima-python search.py and gym-tetris
 
 ## Features
 
-Tetris AI uses Open Gym AI environment gym-tetris in order to play SNES Tetris
+Tetris AI uses Open Gym AI environment gym-tetris in order to play NES Tetris
 
 
 ## Acknowledgements
