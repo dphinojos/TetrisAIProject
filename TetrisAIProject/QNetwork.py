@@ -98,11 +98,11 @@ class TetrisAI():
         self.net = TetrisNet(self.state_dim, self.action_dim).float()
         self.net = self.net.to(device=self.device)
 
-        self.memory = deque(maxlen=20000)
+        self.memory = deque(maxlen=10000) #change this depending on memory avaliable
         self.batch_size = 32
 
         self.exploration_rate = 1
-        self.exploration_rate_decay = 0.99999975
+        self.exploration_rate_decay = 0.99999975 
         self.exploration_rate_min = 0.1
         self.current_step = 0
 
@@ -230,6 +230,18 @@ class TetrisAI():
         self.exploration_rate = checkpoint['exploration_rate']
     
         self.net.eval()
+
+    #For testing just the network!
+    def action(self, state):
+        state = state[0].__array__() if isinstance(state, tuple) else state.__array__()
+        state = torch.tensor(state, device=self.device).unsqueeze(0)
+        action_values = self.net(state, model="online")
+        action_idx = torch.argmax(action_values, axis=1).item()
+
+        self.current_step += 1
+
+        return action_idx
+
 
 class TetrisNet(nn.Module):
     def __init__(self, input_dim, output_dim):

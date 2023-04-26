@@ -16,7 +16,7 @@ tetris = TetrisAI(state_dim=(4, 84, 84), action_dim=env.action_space.n, save_dir
 
 logger = MetricLogger(save_dir)
 
-episodes = 40000
+episodes = 10
 for e in range(episodes):
 
     state = env.reset()
@@ -29,7 +29,7 @@ for e in range(episodes):
 
         # Agent performs action
         next_state, reward, done, info = env.step(action)
-        #env.render()
+        env.render()
 
         # Remember
         tetris.cache(state, next_state, action, reward, done)
