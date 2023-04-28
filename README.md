@@ -1,11 +1,11 @@
 # Tetris AI Project
 
-Project to create an AI that can play the snes version of Tetris using a genetic algorithm.
+Project to create an AI that can play the snes version of Tetris using Double Deep Q-Learning.
 
 
 ## Requirements
 
-Requirements include aima-python search.py and gym-tetris
+Requirements include gym-tetris, pytorch, and matplot
 
 ```bash
   pip install gym-tetris
