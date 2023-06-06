@@ -9,6 +9,8 @@ Requirements include gym-tetris, pytorch, and matplot
 
 ```bash
   pip install gym-tetris
+  pip install pytorch
+  pip install matplot
 ```
 
 
